@@ -1,0 +1,13 @@
+export module foo;
+
+import std;
+
+export struct StringHash {
+    using is_transparent = void;
+
+    [[nodiscard]] auto operator()(const std::string& value) const noexcept;
+};
+
+inline auto StringHash::operator()(const std::string& value) const noexcept {
+    return std::hash<std::string> {}(value);
+}
